@@ -4,13 +4,25 @@ using System;
 
 namespace MyLoggerNlogAdapter
 {
-    // Doesn't matter if implementing ILogger<T> or ILogger
-    // Preference would depend on what DI library is used
-    public class NLogAdapter<T> : MyLogger.ILogger<T>
+    public class NLogAdapter<T> : NLogAdapter
     {
-        private readonly Logger _logger = LogManager.GetLogger(typeof(T).FullName);
+        public NLogAdapter() : base(LogManager.GetLogger(typeof(T).FullName))
+        {
+        }
+    }
+
+    public class NLogAdapter : MyLogger.ILogger
+    {
+        protected readonly NLog.ILogger _logger;
 
         public bool IsDebug => _logger.IsDebugEnabled;
+
+        public NLogAdapter(NLog.ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        protected NLogAdapter(){}
 
         public void Log(LogEntry entry)
         {

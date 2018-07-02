@@ -6,7 +6,7 @@ namespace MyLoggerLog4NetAdapter
 {
     // Doesn't matter if implementing ILogger<T> or ILogger
     // Preference would depend on what DI library is used
-    public class Log4NetAdapter<T> : ILogger
+    public class Log4NetAdapter<T> : ILogger<T>
     {
         private readonly ILog _logger = LogManager.GetLogger(typeof(T));
 

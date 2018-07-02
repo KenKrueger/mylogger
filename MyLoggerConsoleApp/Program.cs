@@ -21,6 +21,13 @@ namespace MyLoggerConsoleApp
             logger.WriteWithLog4Net("Hello from log4net");
             logger.WriteWithNLog("Hello from nlog");
             logger.WriteWithSerilog("Hello from serilog");
+
+            var simpleInjectorExample = ContainerHelper.Container.GetInstance<SimpleInjectorExample>();
+            simpleInjectorExample.Log("Hello {Name} from Serilog", "Ken");
+
+            var simpleInjectorExample2 = ContainerHelper.Container.GetInstance<SimpleInjectorExample>();
+            simpleInjectorExample2.Log("Hello {Name} from Serilog", "Ken");
+
             Console.ReadKey();
         }  
     }
