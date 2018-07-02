@@ -3,7 +3,9 @@ using System;
 
 namespace MyLoggerSerilogAdapter
 {
-    public class SerilogAdapter<T> : ILogger
+    // Doesn't matter if implementing ILogger<T> or ILogger
+    // Preference would depend on what DI library is used
+    public class SerilogAdapter<T> : ILogger<T>
     {
         private readonly Serilog.ILogger _logger = Serilog.Log.ForContext<T>();
 

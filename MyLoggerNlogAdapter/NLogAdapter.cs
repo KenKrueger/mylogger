@@ -4,7 +4,9 @@ using System;
 
 namespace MyLoggerNlogAdapter
 {
-    public class NLogAdapter<T> : MyLogger.ILogger
+    // Doesn't matter if implementing ILogger<T> or ILogger
+    // Preference would depend on what DI library is used
+    public class NLogAdapter<T> : MyLogger.ILogger<T>
     {
         private readonly Logger _logger = LogManager.GetLogger(typeof(T).FullName);
 

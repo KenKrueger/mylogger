@@ -5,4 +5,6 @@
         void Log(LogEntry entry);
         bool IsDebug { get; }
     }
+    
+    public interface ILogger<T> : ILogger { }
 }
